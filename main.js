@@ -1,66 +1,58 @@
 document.componentRegistry = {};
 document.nextId = 0;
 
-class Component {
-  constructor() {
-    this._id = ++document.nextId;
-    document.componentRegistry[this._id] = this;
-  }
-}
+const Component = () =>
+  (document.componentRegistry[document.nextId] = { _id: document.nextId++ });
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      input: "",
-      option: "isPrime",
-    };
-  }
+const App = () => {
+  const app = Component();
+  app.state = {
+    input: "",
+    option: "isPrime",
+  };
 
-  render() {
-    return `<div class="row">
+  app.render = () => `<div class="row">
               <div class="col-md-2">
                 <input type="text" value="${
-                  this.state.input
+                  app.state.input
                 }" id="input" oninput="document.componentRegistry[${
-      this._id
-    }].setInput(this.value)">
+    app._id
+  }].setInput(this.value)">
               </div>
               <div class="col-md">
                 <select name="checkNumber" id="checkNumber" onchange="document.componentRegistry[${
-                  this._id
+                  app._id
                 }].setOption(this.value)">
                   <option value="isPrime" ${
-                    this.state.option === "isPrime" ? 'selected="selected"' : ""
+                    app.state.option === "isPrime" ? 'selected="selected"' : ""
                   }>isPrime</option>
                   <option value="isFibonacci" ${
-                    this.state.option === "isFibonacci"
+                    app.state.option === "isFibonacci"
                       ? 'selected="selected"'
                       : ""
                   }>isFibonacci</option>
                 </select>
               </div>
               <div class="col-md-3">${
-                this.state.input
-                  ? this.process(this.state.input, this.state.option)
+                app.state.input
+                  ? process(app.state.input, app.state.option)
                   : ""
               }</div>
             </div>`;
-  }
 
-  process(num, option) {
-    return option === "isPrime" ? isPrime(num) : isFibonacci(num);
-  }
+  const process = (num, option) =>
+    option === "isPrime" ? isPrime(num) : isFibonacci(num);
 
-  setInput(newValue) {
-    this.state.input = newValue;
+  app.setInput = (newValue) => {
+    app.state.input = newValue;
     update();
-  }
-  setOption(newValue) {
-    this.state.option = newValue;
+  };
+  app.setOption = (newValue) => {
+    app.state.option = newValue;
     update();
-  }
-}
+  };
+  return app;
+};
 
 const isPrime = (num) => {
   for (var i = 2; i < num; i++) if (num % i === 0) return false;
@@ -81,8 +73,6 @@ function isFibonacci(n) {
   return isPerfectSquare(5 * n * n + 4) || isPerfectSquare(5 * n * n - 4);
 }
 
-// This code is contributed by Rajput-Ji
-
-const app = new App();
+const app = App();
 const update = () => (document.getElementById("app").innerHTML = app.render());
 document.getElementById("app").innerHTML = app.render();
