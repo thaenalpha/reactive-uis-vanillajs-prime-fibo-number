@@ -15,14 +15,10 @@ const App = () => {
               <div class="col-md-2">
                 <input type="text" value="${
                   app.state.input
-                }" id="input" oninput="document.componentRegistry[${
-    app._id
-  }].setInput(this.value)">
+                }" id="input" oninput="app.setInput(this.value)">
               </div>
               <div class="col-md">
-                <select name="checkNumber" id="checkNumber" onchange="document.componentRegistry[${
-                  app._id
-                }].setOption(this.value)">
+                <select name="checkNumber" id="checkNumber" onchange="app.setOption(this.value)">
                   <option value="isPrime" ${
                     app.state.option === "isPrime" ? 'selected="selected"' : ""
                   }>isPrime</option>
