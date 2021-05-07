@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 600px;
+  overflow: auto;
+}
+
+.col-md {
+  position: relative;
+  flex-basis: 0;
+  flex-grow: 1;
+  min-width: 100px;
+  max-width: 100%;
+  min-height: 1px;
+}
+
+.col-md-2 {
+  position: relative;
+  min-height: 1px;
+  flex: 0 0 200px;
+}
+.col-md-3 {
+  position: relative;
+  min-height: 1px;
+  flex: 0 0 300px;
+}
+
+/* @media(min-width:768px){
+} */
