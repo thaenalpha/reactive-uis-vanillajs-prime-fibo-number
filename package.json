@@ -86,7 +86,7 @@
     "lodash.flatten": "^4.4.0",
     "lodash.truncate": "^4.4.2",
     "lru-cache": "^6.0.0",
-    "minimatch": "^3.0.4",
+    "minimatch": "^3.0.5",
     "ms": "^2.1.2",
     "natural-compare": "^1.4.0",
     "optionator": "^0.9.1",
