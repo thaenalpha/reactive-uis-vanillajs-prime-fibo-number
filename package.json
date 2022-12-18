@@ -29,7 +29,7 @@
     "acorn": "^7.4.1",
     "ansi-colors": "^4.1.1",
     "argparse": "^1.0.10",
-    "ansi-regex": "^5.0.0",
+    "ansi-regex": "^5.0.1",
     "astral-regex": "^2.0.0",
     "ansi-styles": "^4.3.0",
     "balanced-match": "^1.0.2",
